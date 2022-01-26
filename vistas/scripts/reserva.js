@@ -218,6 +218,7 @@ function mostrar(id_reserva) {
     $("#descuento").val(data.descuento);
     $("#total").val(data.total);
     $('#id_usuario').val(data.id_usuario).trigger('change.select2');
+    $('#id_estado').attr("disabled", false);
     $('#id_estado').val(data.id_estado).trigger('change.select2');
     $("#titulo-reserva").html('Reserva N° ' + numero_reserva + '<button id="btn-detalles" class="btn btn-xs btn-warning text-white mx-2" type="button" onclick="detalles(' + data.id_reserva + ')"><i class="fa fa-list"></i> Ver Detalles </button>');
     $.post("../../controladores/reserva.php?op=checkdetalles", {
@@ -258,6 +259,8 @@ $("#btn-agregar").click(function () {
   }, function (r) {
     $("#listado-check").html(r);
   });
+  $('#id_estado').val(1).trigger('change.select2');
+  $('#id_estado').attr("disabled", true);
   detalles(0);
   mostrarform(true);
 })
