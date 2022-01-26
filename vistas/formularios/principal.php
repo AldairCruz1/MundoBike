@@ -50,7 +50,7 @@ require_once 'header.php';
                   <!-- Morris chart - Sales -->
                   <h4>Bienvenid@</h4>
                   <br>
-                  <?php echo $_SESSION["nombres"]." ".$_SESSION["apepaterno"]." ".$_SESSION["apematerno"]?>
+                  <?php echo $_SESSION["nombres"]." ".$_SESSION["apepaterno"]." ".$_SESSION["apematerno"]?> a MUNDOBIKE
                   <div class="chart tab-pane active" id="revenue-chart"
                        style="position: relative; height: 30px;">
                       <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
