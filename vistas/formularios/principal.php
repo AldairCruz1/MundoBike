@@ -48,7 +48,7 @@ require_once 'header.php';
               <div class="card-body">
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
-                  <h4>Bienvenid@</h4>
+                  <h4>Hola Amigo</h4>
                   <br>
                   <?php echo $_SESSION["nombres"]." ".$_SESSION["apepaterno"]." ".$_SESSION["apematerno"]?> a MUNDOBIKE
                   <div class="chart tab-pane active" id="revenue-chart"
