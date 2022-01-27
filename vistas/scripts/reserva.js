@@ -172,6 +172,8 @@ var Toast = Swal.mixin({
   timer: 2000
 });
 
+$('#listado-check').hide();
+
 //$('#contenido-listado-check').hide();
 
 mostrarform(false);
@@ -181,11 +183,11 @@ function mostrarform(flag) {
   if (flag) {
     $('#form').show();
     $('#listado').hide();
-    //$('#detalles').hide();
+    $('#detalles').hide();
   } else {
     $('#form').hide();
     $('#listado').show();
-    //$('#detalles').hide();
+    $('#detalles').hide();
   }
 }
 
@@ -219,8 +221,10 @@ function mostrar(id_reserva) {
     $("#total").val(data.total);
     $('#id_usuario').val(data.id_usuario).trigger('change.select2');
     $('#id_estado').attr("disabled", false);
+    $('#bk-show').prop('checked', false);
+    $("#bk-show").attr("value", "0");
     $('#id_estado').val(data.id_estado).trigger('change.select2');
-    $("#titulo-reserva").html('Reserva N° ' + numero_reserva + '<button id="btn-detalles" class="btn btn-xs btn-warning text-white mx-2" type="button" onclick="detalles(' + data.id_reserva + ')"><i class="fa fa-list"></i> Ver Detalles </button>');
+    $("#titulo-reserva").html('Reserva N° ' + numero_reserva);
     $.post("../../controladores/reserva.php?op=checkdetalles", {
           id_reserva: id_reserva
         }, function (r) {
@@ -253,7 +257,7 @@ $("#btn-agregar").click(function () {
   day = d.getDate();
   fecha = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
   $("#fecha").val(fecha);
-  $("#titulo-reserva").html('Nueva Reserva<button id="btn-detalles" class="btn btn-xs btn-warning text-white mx-2" type="button" onclick="detalles(0)"><i class="fa fa-list"></i> Ver Bicicletas </button>');
+  $("#titulo-reserva").html('Nueva Reserva');
   $.post("../../controladores/reserva.php?op=checkdetalles", {
     id_reserva: 0
   }, function (r) {
@@ -261,6 +265,8 @@ $("#btn-agregar").click(function () {
   });
   $('#id_estado').val(1).trigger('change.select2');
   $('#id_estado').attr("disabled", true);
+  $('#bk-show').prop('checked', false);
+  $("#bk-show").attr("value", "0");
   detalles(0);
   mostrarform(true);
 })
@@ -268,6 +274,19 @@ $("#btn-agregar").click(function () {
 $("#btn-cancelar").click(function () {
   limpiar();
   mostrarform(false);
+})
+
+$("#bk-show").click(function () {
+  
+  condicion = $("#bk-show").attr("value");
+  if(condicion == 0){
+    $("#detalles").show();
+    $("#bk-show").attr("value","1");
+  }
+  else{
+    $("#detalles").hide();
+    $("#bk-show").attr("value", "0");
+  }
 })
 
 function listar() {

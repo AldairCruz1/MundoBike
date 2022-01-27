@@ -207,7 +207,7 @@ if ($_SESSION['reservas']==1){
                     <div id="contenido-listado-check" class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Detalles</label>
+                          <label>Detalles:</label> <div style="float: right">Bicicletas Disponibles<input type="checkbox" id="bk-show" class="ml-1 mb-2" value="0"></div>
                           <!-- checkbox -->
                           <div id="listado-check" class="form-group">
                             <!-- <div class="custom-control custom-checkbox">
