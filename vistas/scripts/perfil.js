@@ -9,25 +9,22 @@ $(function () {
     editar(e);
   });
 
+  $("#formulario2").on("submit", function (e) {
+    editar2(e);
+  });
+
   $.post("../../controladores/usuario.php?op=presentar", {}, function (data, status) {
     data = JSON.parse(data);
-    fechaCreate = moment(data.creado_a, 'YYYY-MM-DD hh:mm:ii');
-    fechaCreate = fechaCreate.format('D MMM YYYY');
-    $("#creacion").html(fechaCreate);
-
-    //alert(fechaEjemplo)
-    // $("#m-nombre").html(data.nombres + " " + data.apepaterno + " " + data.apematerno);
+    getFecha = moment(data.creado_a, 'YYYY-MM-DD HH:mm:ss');
+    fechaCreate = getFecha.format('D MMM YYYY');
+    horaCreate = getFecha.format('HH:mm');
+    $("#create-date").html(fechaCreate);
+    $("#create-hour").append(horaCreate);
     date = new Date();
     hoy = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-    alert(hoy)
     fechaUpdate = moment(hoy, 'YYYY-MM-DD');
     fechaUpdate = fechaUpdate.format('D MMM YYYY');
-    $("#actualizacion").html(fechaUpdate);
-    // $("#m-nombres").html(data.nombres);
-    // $("#m-apellidos").html(data.apepaterno + " " + data.apematerno);
-    // $("#m-dni").html(data.dni);
-    // $("#m-celular").html(data.celular);
-    // $("#m-email").html(data.email);
+    $("#update-date").html(fechaUpdate);
   })
 
 
@@ -247,9 +244,15 @@ function presentar() {
 
 
 function limpiar(){
-  $("#login").val("");
-  $("#password").val("");
-  $("#nombres").val("");
+  $("#pass_old").val("");
+  $("#pass_new").val("");
+  $("#pass_new_2").val("");
+  $("#icon_pass_old").attr("class", "");
+  $("#icon_pass_new").attr("class", "");
+  $("#icon_pass_new_2").attr("class", "");
+  $("#pass_old").removeAttr("readonly");
+  $("#pass_new").attr("readonly", "readonly");
+  $("#pass_new_2").attr("readonly", "readonly");
   $("#apematerno").val("");
   $("#apepaterno").val("");
   $("#dni").val("");
@@ -295,32 +298,108 @@ function editar(e) {
           title: data.mensaje
         })
       }
+      $("#historial-tab").click();
+    }
+
+  });
+}
+
+function editar2(e) {
+  e.preventDefault();
+  var formData = new FormData($("#formulario2")[0]);
+
+  $.ajax({
+    url: "../../controladores/usuario.php?op=actualizarpass",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+
+    success: function (data) {
+      data = JSON.parse(data);
+      if (data.condicion == 1) {
+        Toast.fire({
+          icon: 'success',
+          title: data.mensaje
+        });
+      } else if (data.condicion == 2) {
+        Toast.fire({
+          icon: 'error',
+          title: data.mensaje
+        });
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: data.mensaje
+        })
+      }
+      limpiar();
+      $("#historial-tab").click();
     }
 
   });
 }
 
 $("#pass_old").change(function () {
-  validacion = true;
-  if(validacion){
-    $("#icon_pass_old").attr("class", "fas fa-check-circle text-success");
-    $("#pass_old").attr("readonly", "readonly");
-    $("#pass_new").removeAttr("readonly");
-  }
-  else{
-    $("#icon_pass_old").attr("class", "fas fa-times-circle text-danger");
-  }
+  pass_old = $("#pass_old").val();
+  $.post("../../controladores/usuario.php?op=validarpassword", {
+    pass_old: pass_old
+  }, function (data, status) {
+    data = JSON.parse(data);
+    if(data.condicion == 1){
+      Toast.fire({
+        icon: 'success',
+        title: data.mensaje
+      })
+      $("#icon_pass_old").attr("class", "fas fa-check-circle text-success");
+      $("#pass_old").attr("readonly", "readonly");
+      $("#pass_new").removeAttr("readonly");
+    }
+    else{
+      Toast.fire({
+        icon: 'error',
+        title: data.mensaje
+      })
+      $("#icon_pass_old").attr("class", "fas fa-times-circle text-danger");
+    }
+  })
 })
 
 $("#pass_new").change(function () {
-  $("#icon_pass_new").attr("class", "fas fa-check-circle text-success");
-  $("#pass_new").attr("readonly", "readonly");
-  $("#pass_new_2").removeAttr("readonly");
+  pass_new = $("#pass_new").val();
+  if(pass_new.length <= 4){
+    Toast.fire({
+      icon: 'error',
+      title: 'Minimo 5 caracteres'
+    })
+    $("#icon_pass_new").attr("class", "fas fa-times-circle text-danger");
+  }
+  else{
+    $("#icon_pass_new").attr("class", "fas fa-check-circle text-success");
+    $("#pass_new").attr("readonly", "readonly");
+    $("#pass_new_2").removeAttr("readonly");
+  }
 })
 
 $("#pass_new_2").change(function () {
-  $("#icon_pass_new_2").attr("class", "fas fa-check-circle text-success");
-  $("#pass_new_2").attr("readonly", "readonly");
+  pass_new = $("#pass_new").val();
+  pass_new2 = $("#pass_new_2").val();
+  if (pass_new == pass_new2){
+    $("#icon_pass_new_2").attr("class", "fas fa-check-circle text-success");
+    $("#pass_new_2").attr("readonly", "readonly");
+  }
+  else{
+    Toast.fire({
+      icon: 'error',
+      title: 'Contraseñas no coinciden'
+    })
+    $("#icon_pass_new_2").attr("class", "fas fa-times-circle text-danger");
+  }
+  
+})
+
+$("#btnLimpiar").click(function () {
+  limpiar();
 })
 
 // DropzoneJS Demo Code End

@@ -927,7 +927,7 @@ if ($_SESSION['tipo']){
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <!-- <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li> -->
-                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Historial</a></li>
+                  <li class="nav-item"><a class="nav-link active" id="historial-tab" href="#timeline" data-toggle="tab">Historial</a></li>
                   <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                   <li class="nav-item"><a class="nav-link" href="#misdatos" data-toggle="tab">Mis Datos</a></li> -->
                   <li class="nav-item"><a onclick="mostrar(<?=$_SESSION['id_usuario']?>)" class="nav-link" href="#modificar" data-toggle="tab">Modificar</a></li>
@@ -1058,7 +1058,7 @@ if ($_SESSION['tipo']){
                     <div class="timeline timeline-inverse">
                       <!-- timeline time label -->
                       <div class="time-label">
-                        <span class="bg-danger" id="creacion">
+                        <span class="bg-danger" id="create-date">
                           <!-- 10 Feb. 2014 -->
                         </span>
                       </div>
@@ -1090,7 +1090,7 @@ if ($_SESSION['tipo']){
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+                          <span class="time" id="create-hour"><i class="far fa-clock"></i> </span>
 
                           <h3 class="timeline-header border-0"><a href="#">Ingreso</a> creacion del usuario
                           </h3>
@@ -1119,7 +1119,7 @@ if ($_SESSION['tipo']){
                       <!-- END timeline item -->
                       <!-- timeline time label -->
                       <div class="time-label">
-                        <span class="bg-success" id="actualizacion">
+                        <span class="bg-success" id="update-date">
                           <!-- 3 Jan. 2014 -->
                         </span>
                       </div>

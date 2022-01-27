@@ -123,6 +123,21 @@ Class Usuario
 		return $imagen;
 	}
 
+	public function validarPassword($id_usuario)
+	{
+		$sql="SELECT * FROM usuario WHERE id_usuario = '$id_usuario'";
+		$x = ejecutarConsulta($sql)->fetch_object();
+		$password = $x->password;
+		return $password;
+	}
+
+	public function actualizarPassword($id_usuario, $contraseña_nueva)
+	{
+		$sql="UPDATE usuario SET password='$contraseña_nueva' WHERE id_usuario='$id_usuario'";
+		$rspta = ejecutarConsulta($sql);
+		return $rspta;
+	}
+
 }
 
 ?>
