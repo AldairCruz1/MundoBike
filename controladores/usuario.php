@@ -177,6 +177,21 @@ switch ($_GET["op"]){
 		echo json_encode($data);
 	break;
 
+	case 'actualizarpass':
+		$id_usuario = $_SESSION["id_usuario"];
+		$contraseña_nueva = md5($_POST["pass_new"]);
+		$rspta=$usuario->actualizarPassword($id_usuario, $contraseña_nueva);
+		if($rspta){
+			$data["condicion"] = 1;
+			$data["mensaje"] = "Contraseña Actualizada";
+		}
+		else{
+			$data["condicion"] = 2;
+			$data["mensaje"] = "Contraseña no se pudo actualizar";
+		}
+		echo json_encode($data);	
+	break;
+
 	case 'desactivar':
 		$rspta=$usuario->desactivar($id_usuario);
 		if($rspta){
@@ -199,6 +214,21 @@ switch ($_GET["op"]){
 		else{
 			$data["condicion"] = 2;
 			$data["mensaje"] = "Usuario no se pudo activar";
+		}
+		echo json_encode($data);	
+	break;
+
+	case 'validarpassword':
+		$contraseña_antigua = $_POST["pass_old"];
+		$id_usuario = $_SESSION["id_usuario"];
+		$rspta=$usuario->validarPassword($id_usuario);
+		if($rspta == md5($contraseña_antigua)){
+			$data["condicion"] = 1;
+			$data["mensaje"] = "Contraseña correcta";
+		}
+		else{
+			$data["condicion"] = 2;
+			$data["mensaje"] = "Contraseña incorrecta";
 		}
 		echo json_encode($data);	
 	break;
