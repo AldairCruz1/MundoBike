@@ -17,6 +17,7 @@ $(function () {
   listar();
 
   $("#formulario").on("submit", function (e) {
+    $('#id_estado').attr("disabled", false);
     guardaryeditar(e);
   });
 
