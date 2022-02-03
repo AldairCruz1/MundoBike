@@ -10,7 +10,7 @@ else
 {
 require 'header.php';
 if ($_SESSION['reservas']==1){
-
+    
 ?>
 
 <!-- Preloader -->

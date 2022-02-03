@@ -67,8 +67,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
   <!-- importo todos los idiomas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.min.js"></script>
-  <!-- importo la libreria timer -->
-  <script src="../../plugins/timer/timer.jquery.min.js"></script>
+
+
+  <!-- FLOT CHARTS -->
+<script src="../../plugins/flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="../../plugins/flot/plugins/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="../../plugins/flot/plugins/jquery.flot.pie.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+<!-- importo la libreria timer -->
+ <script src="../../plugins/timer/timer.jquery.min.js"></script>
+
 
   <?php if($_SESSION["tipo"] == "administrador"){?>
   <script src="../scripts/notificaciones.js"></script>

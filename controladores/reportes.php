@@ -114,7 +114,49 @@ switch ($_GET["op"]){
 
     break;
 
+    case 'getdatos':
+        $rspta=$reportes->getdatos();
+        echo json_encode($rspta);
+    break;
+
+    case 'ventasMeses':
+        $rspta=$reportes->ventasMeses();
+        //$rspta-> fetch_object();
+        while($row = $rspta->fetch_object()) {
+            $array[]=[$row->fecha, $row->total];
+        }
+        echo json_encode($array);
+    break;
+
+    case 'reservasTotalMeses':
+        $rspta=$reportes->reservasTotalMeses();
+        //$rspta-> fetch_object();
+        while($row = $rspta->fetch_object()) {
+            $array[]=[$row->marca, $row->cantidad];
+        }
+        echo json_encode($array);
+    break;
+
+    case 'compareteBicicle':
+        $rspta=$reportes->compareteBicicle();
+        //$rspta-> fetch_object();
+        while($row = $rspta->fetch_object()) {
+            $array[]=[$row->fecha, $row->id_bicicleta,$row->total];
+        }
+        echo json_encode($array);
+    break;
     
+    case 'nombre':
+ 
+        $rspta = $reportes->nombre();
+
+		//echo '<option> --- Seleccione --- </option>';
+
+        while ($reg = $rspta->fetch_object())
+            {
+                echo '<option value = ' . $reg->id_bicicleta . '>' . $reg->nombre.'</option>';
+            }
+    break;
 
 }
 

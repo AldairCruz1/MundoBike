@@ -49,6 +49,9 @@ session_start();
   <!-- Alertify theme default -->
   <link rel="stylesheet" href="../../plugins/recursos-nuevos/plugins/alertifyjs/css/themes/default.min.css" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+
+
 </head>
 
 <body class="hold-transition sidebar-mini">
