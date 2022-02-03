@@ -138,6 +138,13 @@ Class Usuario
 		return $rspta;
 	}
 
+	public function newUsers()
+	{
+		$sql="SELECT * FROM usuario WHERE notificacion = '0'";
+		$rspta = ejecutarConsulta($sql);
+		return $rspta;
+	}
+
 }
 
 ?>

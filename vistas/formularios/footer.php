@@ -67,8 +67,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
   <!-- importo todos los idiomas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.min.js"></script>
-  
+  <!-- importo la libreria timer -->
+  <script src="../../plugins/timer/timer.jquery.min.js"></script>
 
+  <?php if($_SESSION["tipo"] == "administrador"){?>
+  <script src="../scripts/notificaciones.js"></script>
+  <?php }?>
+  
 </body>
 
 </html>

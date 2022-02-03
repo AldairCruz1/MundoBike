@@ -1,17 +1,21 @@
 $(function () {
   moment.locale('es');
+
   presentar();
 
-  //alert("hola");
-  //limpiar();
+  // $.timer(2000, function () {
+  //   alert("hola, pasaron 2 segundos");
+  // })
 
   $("#formulario").on("submit", function (e) {
     editar(e);
   });
 
   $("#formulario2").on("submit", function (e) {
-    editar2(e);
+      editar2(e);
   });
+
+  $("#btnGuardarPass").prop('disabled', true);
 
   $.post("../../controladores/usuario.php?op=presentar", {}, function (data, status) {
     data = JSON.parse(data);
@@ -223,7 +227,6 @@ function mostrar(id_usuario) {
     $("#id_usuario").val(data.id_usuario);
     $('#tipo').val(data.tipo).trigger('change.select2');
     if(data.tipo == "administrador" || data.tipo == "asistente"){
-      checkpermisos(id_usuario);
     }
   })
 }
@@ -284,7 +287,7 @@ function editar(e) {
           icon: 'success',
           title: data.mensaje
         });
-        presentar();
+        location.reload();
       }
       else if (data.condicion == 2) {
         Toast.fire({
@@ -322,6 +325,7 @@ function editar2(e) {
           icon: 'success',
           title: data.mensaje
         });
+        $("#btnGuardarPass").prop('disabled', true);
       } else if (data.condicion == 2) {
         Toast.fire({
           icon: 'error',
@@ -387,6 +391,7 @@ $("#pass_new_2").change(function () {
   if (pass_new == pass_new2){
     $("#icon_pass_new_2").attr("class", "fas fa-check-circle text-success");
     $("#pass_new_2").attr("readonly", "readonly");
+    $("#btnGuardarPass").prop('disabled', false);
   }
   else{
     Toast.fire({
@@ -400,6 +405,11 @@ $("#pass_new_2").change(function () {
 
 $("#btnLimpiar").click(function () {
   limpiar();
+  Toast.fire({
+    icon: 'info',
+    title: 'Campos limpiados'
+  })
+  $("#btnGuardarPass").prop('disabled', true);
 })
 
 // DropzoneJS Demo Code End
