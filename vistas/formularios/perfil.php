@@ -1319,7 +1319,7 @@ if ($_SESSION['tipo']){
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-4 col-sm-8">
-                          <button class="btn btn-sm bg-success text-white" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar
+                          <button class="btn btn-sm bg-success text-white" type="submit" id="btnGuardarPass"><i class="fa fa-save"></i> Guardar
                           </button>
                           <button class="btn btn-sm bg-info text-white" type="button" id="btnLimpiar"><i class="fa fa-paint-brush"></i> Limpiar
                           </button>
