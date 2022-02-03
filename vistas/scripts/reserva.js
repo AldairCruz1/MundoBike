@@ -17,6 +17,7 @@ $(function () {
   listar();
 
   $("#formulario").on("submit", function (e) {
+    $('#id_estado').attr("disabled", false);
     guardaryeditar(e);
   });
 
@@ -398,6 +399,12 @@ function agregar(id_bicicleta) {
       icon: 'info',
       title: 'Complete los campos Inicio y Fin'
     });
+    if (hora_inicio == "") {
+      $("#hora_inicio").focus();
+    } 
+    else{
+      $("#hora_fin").focus();
+    }
     mostrarform(true);
   }
   else{
