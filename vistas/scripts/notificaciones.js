@@ -13,7 +13,7 @@ $('#newUsers').timer({
 });
 
 function notifications() {
-    $.post("../../controladores/usuario.php?op=notificaciones", {},
+    $.post("../../controladores/notificacion.php?op=notificaciones", {},
         function (data, status) {
             //data = JSON.parse(data);
             $("#notificationes").html(data);

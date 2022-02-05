@@ -141,7 +141,7 @@ switch ($_GET["op"]){
 					$guardado = $file["tmp_name"];
 					$url = explode("\\",$guardado);
 					$url = explode(".",end($url));
-					$ubicacion = "../files/avatar/".$url[0]."-".$nombre;
+					$ubicacion = "../files/".$url[0]."-".$nombre;
 					if(move_uploaded_file($guardado, $ubicacion)){
 						$imagen = $usuario->imagen($id_usuario);
 						$imagen = substr($imagen, 3);

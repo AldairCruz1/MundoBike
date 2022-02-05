@@ -63,11 +63,11 @@ session_start();
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        <!-- <li class="nav-item d-none d-sm-inline-block">
           <a href="principal.php" class="nav-link">Home</a>
-        </li>
+        </li> -->
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+          <a href="#" class="nav-link"><??></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a id="newUsers" href="#" class="nav-link">Contact</a>
@@ -165,11 +165,11 @@ session_start();
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
         </li>-->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-th-large"></i>
           </a>
-        </li>
+        </li> -->
         <?php } ?>
 
         <li class="nav-item dropdown user-menu">
