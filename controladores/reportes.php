@@ -138,10 +138,14 @@ switch ($_GET["op"]){
     break;
 
     case 'compareteBicicle':
-        $rspta=$reportes->compareteBicicle();
+
+        $id_bicicleta=$_REQUEST["id_bicicleta"];
+        $id_bicicleta2=$_REQUEST["id_bicicleta2"];
+
+        $rspta=$reportes->compareteBicicle1($id_bicicleta,$id_bicicleta2);
         //$rspta-> fetch_object();
         while($row = $rspta->fetch_object()) {
-            $array[]=[$row->fecha, $row->id_bicicleta,$row->total];
+            $array[]=[$row->fecha, $row->monto,$row->id_bicicleta,$row->fecha2, $row->monto2,$row->id_bicicleta2];
         }
         echo json_encode($array);
     break;
