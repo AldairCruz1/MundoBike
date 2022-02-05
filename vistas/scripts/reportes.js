@@ -1,31 +1,56 @@
 /*var tabla;*/
 
+var barChart;
+// var id_bicicleta;
+// var id_bicicleta2;
+// var name;
+// var name2;
+//let barChartCanvas;
+
 $(function () {
 
-    $("#id_bicicleta").change(function () {
+    $('#borrarGrafico').hide();
+
+
+    var id_bicicleta = $("#id_bicicleta").val();
+    var id_bicicleta2 = $("#id_bicicleta2").val();
+
+    name1=id_bicicleta;
+    name2=id_bicicleta2;
+
+    /*$("#id_bicicleta").change(function () {
       //alert("Cambio");
       var id_bicicleta = $("#id_bicicleta").val();
+      var id_bicicleta2 = $("#id_bicicleta2").val();
       compareteBicicle(name1=id_bicicleta);
+      compareteBicicle(name2=id_bicicleta2);
+      
 
-    });
+    });*/
+
 
     $.post("../../controladores/reportes.php?op=nombre", function (r) {
     $("#id_bicicleta").html(r);
-    $("#id_bicicleta2").html(r);
     $("#id_bicicleta").select2({
       placeholder: "Seleccione Bicicleta"
     });
+    $("#id_bicicleta2").html(r);
     $("#id_bicicleta2").select2({
       placeholder: "Seleccione Bicicleta"
     });
     });
 
+    limpiar();
     ventasMeses();
     reservasTotalMeses();
-    compareteBicicle();
+    //compareteBicicle();
     listar();
     $("#fecha_inicio").change(listar);
     $("#fecha_fin").change(listar);
+    
+    //$("#id_bicicleta").change(compareteBicicle);
+    //("#id_bicicleta2").change(compareteBicicle);
+
   
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -112,6 +137,11 @@ $(function () {
   
   //Funciones -------------------------------------------------------------------------------
   
+  function limpiar() {
+    $("#id_bicicleta").val(null).trigger("change")
+    $("#id_bicicleta2").val(null).trigger("change")
+  }
+
   function listar(){
 
     var fecha_inicio = $("#fecha_inicio").val();
@@ -225,7 +255,7 @@ $(function () {
       type: "post",
     }).done(function(data){
       //alert(data);
-      console.log(data);
+      //console.log(data);
       var marca=[];
       var cantidad=[];
     
@@ -273,16 +303,22 @@ $(function () {
     })
   }
 
-  function compareteBicicle(name1='Electronics', name2='Digital Goods') {
+  function compareteBicicle(name1, name2) {
+    var id_bicicleta = $("#id_bicicleta").val();
+    var id_bicicleta2 = $("#id_bicicleta2").val();
     $.ajax({
       url: "../../controladores/reportes.php?op=compareteBicicle",
+      data:{id_bicicleta: id_bicicleta,id_bicicleta2: id_bicicleta2},
       type: "post",
     }).done(function(data){
       //alert(data);
-      //console.log(data);
+      console.log(data);
       var fecha=[];
+      var monto=[];
       var id_bicicleta=[];
-      var total=[];
+      var fecha2=[];
+      var monto2=[];
+      var id_bicicleta2=[];
     
       var data = JSON.parse(data);
       //alert(data1);
@@ -292,24 +328,88 @@ $(function () {
         total.push(data[i][1]);
       }*/
       data.forEach( function(valor, indice, array) {
-        //console.log('Fecha: '+valor[0]+' -ID_Bicicleta: '+valor[1]+' -Total'+valor[2]);
+        console.log('Fecha: '+valor[0]+' -Monto: '+valor[1]+' -ID_BICICLETA: '+valor[2]+' *** Fecha2: '+valor[3]+' -Monto2: '+valor[4]+' -ID_BICICLETA2: '+valor[5]);
         fecha.push(valor[0]);
-        id_bicicleta.push(valor[1]);
-        total.push(valor[2]);
+        monto.push(valor[1]);
+        id_bicicleta.push(valor[2]);
+        fecha2.push(valor[3]);
+        monto2.push(valor[4]);
+        id_bicicleta2.push(valor[5]);
       });
 
       //console.log(id_bicicleta);
-      //console.log(fecha);
-      //console.log(total);
+      console.log(fecha);
+      console.log(fecha2);
+      console.log(monto,monto2);
+
+
+    // //setup block
+    // var barChartData = {
+    //   labels  : fecha,
+    //   datasets: [
+    //   {
+    //     label               : "BK"+name2,
+    //     backgroundColor     : 'rgba(60,141,188,0.9)',
+    //     borderColor         : 'rgba(60,141,188,0.8)',
+    //     pointRadius          : false,
+    //     pointColor          : '#3b8bba',
+    //     pointStrokeColor    : 'rgba(60,141,188,1)',
+    //     pointHighlightFill  : '#fff',
+    //     pointHighlightStroke: 'rgba(60,141,188,1)',
+    //     data                : monto2
+    //   },
+    //   {
+    //     label               : "BK"+name1,
+    //     backgroundColor     : 'rgba(210, 214, 222, 1)',
+    //     borderColor         : 'rgba(210, 214, 222, 1)',
+    //     pointRadius         : false,
+    //     pointColor          : 'rgba(210, 214, 222, 1)',
+    //     pointStrokeColor    : '#c1c7d1',
+    //     pointHighlightFill  : '#fff',
+    //     pointHighlightStroke: 'rgba(220,220,220,1)',
+    //     data                : monto
+    //   },   
+    // ]
+    // }
+    // var temp0 = barChartData.datasets[0]
+    // var temp1 = barChartData.datasets[1]
+    // barChartData.datasets[0] = temp1
+    // barChartData.datasets[1] = temp0
+      
+
+    // //config block 
+
+    // var barChartOptions = {
+    //   responsive              : true,
+    //   maintainAspectRatio     : false,
+    //   datasetFill             : false
+    // }
+
+    // const config ={
+    //   type: 'bar',
+    //   data: barChartData,
+    //   options: barChartOptions
+    // }
+    // //init block (render)
+
+    // const myChart= new Chart(
+    //   document.getElementById('myChart3'),
+    //   config
+    // );
+
+    
+
+
 
       //- BAR CHART -
     //-------------
     var barChartCanvas = $('#myChart3').get(0).getContext('2d')
+
     var barChartData = {
       labels  : fecha,
       datasets: [
       {
-        label               : name2,
+        label               : "BK"+name2,
         backgroundColor     : 'rgba(60,141,188,0.9)',
         borderColor         : 'rgba(60,141,188,0.8)',
         pointRadius          : false,
@@ -317,10 +417,10 @@ $(function () {
         pointStrokeColor    : 'rgba(60,141,188,1)',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data                : total[0]
+        data                : monto2
       },
       {
-        label               : name1,
+        label               : "BK"+name1,
         backgroundColor     : 'rgba(210, 214, 222, 1)',
         borderColor         : 'rgba(210, 214, 222, 1)',
         pointRadius         : false,
@@ -328,7 +428,7 @@ $(function () {
         pointStrokeColor    : '#c1c7d1',
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
-        data                : total[1]
+        data                : monto
       },
       
     ]
@@ -338,21 +438,38 @@ $(function () {
     barChartData.datasets[0] = temp1
     barChartData.datasets[1] = temp0
 
+
     var barChartOptions = {
       responsive              : true,
       maintainAspectRatio     : false,
       datasetFill             : false
     }
 
-    new Chart(barChartCanvas, {
+    barChart =  new Chart(barChartCanvas, {
       type: 'bar',
       data: barChartData,
       options: barChartOptions
     })
 
-      
+    //barChart.destroy();
+  
     })
   }
+
+  function destroy(){
+    barChart.destroy();
+  }
+
+  $('#generarGrafico').click(function(){
+    $('#generarGrafico').hide();
+    $('#borrarGrafico').show();
+  });
+  $('#borrarGrafico').click(function(){
+    $('#borrarGrafico').hide();
+    $('#generarGrafico').show();
+  });
+
+  
 
 
   

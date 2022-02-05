@@ -36,28 +36,35 @@ Class Reportes
 
     public function ventasMeses()
     {
-        $sql="SELECT date_format(fecha,'%M') AS fecha, sum(monto) as total from reserva GROUP by month(fecha) ORDER by fecha DESC LIMIT 0,12";
+        $sql="SELECT date_format(hora_inicio,'%Y %M') AS fecha, sum(monto) as total from reserva GROUP by month(hora_inicio) ORDER by fecha DESC LIMIT 0,12";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }
 
     public function reservasTotalMeses()
     {
-        $sql="SELECT b.marca as marca, COUNT(*) as cantidad FROM reserva r INNER JOIN usuario u ON r.id_usuario=u.id_usuario INNER JOIN estado_reserva er ON r.id_estado=er.id_estado INNER JOIN detalle_reserva dr ON dr.id_reserva=r.id_reserva INNER JOIN bicicleta b ON b.id_bicicleta=dr.id_bicicleta WHERE r.id_estado IN (2,4) AND YEAR(Fecha) =YEAR(NOW()) and MONTH(Fecha) =MONTH(NOW()) GROUP BY b.marca";
+        $sql="SELECT b.marca as marca, COUNT(*) as cantidad FROM reserva r INNER JOIN usuario u ON r.id_usuario=u.id_usuario INNER JOIN estado_reserva er ON r.id_estado=er.id_estado INNER JOIN detalle_reserva dr ON dr.id_reserva=r.id_reserva INNER JOIN bicicleta b ON b.id_bicicleta=dr.id_bicicleta WHERE r.id_estado IN (1,2,4) AND YEAR(Fecha) =YEAR(NOW()) and MONTH(Fecha) =MONTH(NOW()) GROUP BY b.marca";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }
 
     public function compareteBicicle()
     {
-        $sql="SELECT date_format(fecha,'%Y %M') AS fecha,b.id_bicicleta, sum(monto) as total from reserva r INNER JOIN detalle_reserva dr ON dr.id_reserva=r.id_reserva INNER JOIN bicicleta b ON b.id_bicicleta=dr.id_bicicleta WHERE r.id_estado IN (2,4) GROUP by month(fecha) ORDER by fecha ASC LIMIT 0,12";
+        $sql="SELECT date_format(fecha,'%Y %M') AS fecha,b.id_bicicleta, sum(monto) as total from reserva r INNER JOIN detalle_reserva dr ON dr.id_reserva=r.id_reserva INNER JOIN bicicleta b ON b.id_bicicleta=dr.id_bicicleta WHERE r.id_estado IN (1,2,4) GROUP by month(fecha) ORDER by fecha ASC LIMIT 0,12";
+        $rspta = ejecutarConsulta($sql);
+        return $rspta;
+    }
+    
+    public function compareteBicicle1($id_bicicleta,$id_bicicleta2)
+    {
+        $sql="Call compare_bikes1('$id_bicicleta','$id_bicicleta2')";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }
 
     public function nombre()
 	{
-		$sql="SELECT id_bicicleta, CONCAT('BK',LPAD((id_bicicleta),3,'0')) as nombre FROM bicicleta        ";
+		$sql="SELECT id_bicicleta, CONCAT('BK',LPAD((id_bicicleta),3,'0')) as nombre FROM bicicleta";
 		$marca = ejecutarConsulta($sql);	
 		return $marca;	
 	}

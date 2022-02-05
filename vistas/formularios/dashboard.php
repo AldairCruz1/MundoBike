@@ -112,7 +112,7 @@ if ($_SESSION['dashboard']==1)
           <section class="col-lg-6 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
 
-            <div class="card card-primary card-outline">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="far fa-chart-bar"></i>
@@ -122,63 +122,88 @@ if ($_SESSION['dashboard']==1)
               </div>
               <div class="card-body">
                 <!--<div id="bar-chart" style="height: 300px;"></div>-->
-                <canvas id="myChart1" width="400" height="400"></canvas>
+                <!-- <canvas id="myChart1" width="400" height="400"></canvas> -->
+                <canvas id="myChart1" style="min-height: 250px; height: 465px; max-height: 500px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body-->
             </div>   
             <!-- /.card -->         
           </section>
 
+          <!-- <section class="col-lg-6 connectedSortable">
+            <div class="card card-success card-outline">
+              <div class="card-header">
+                <h3 class="card-title"><i class="far fa-chart-bar"></i>  Montos generado por Bicicletas por Meses</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <select id="id_bicicleta" name="id_bicicleta" class="form-control select2"  style="width: 25%;"></select>
+                  <select id="id_bicicleta2" name="id_bicicleta2" class="form-control select2" style="width: 25%;"></select>
+                  <button id="generarGrafico" class="btn btn-primary btn-block" onclick="compareteBicicle()" style="width: 50%;"><i class="far fa-chart-bar"></i> Generar Gráfico</button>
+                  <button id="borrarGrafico" class="btn btn-danger btn-block" onclick="destroy()" style="width: 50%;"><i class="fa fa-bell"></i> Borrar Grafico</button>                 
+                </div>                       
+                <div class="chart">
+                  <br>
+                  <canvas id="myChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+            </div>
+          </section> -->
+
+          <section class="col-lg-6 connectedSortable">
+          <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title"><i class="far fa-chart-bar"></i> Montos generado por Bicicletas por Meses</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Seleccione Bicicleta #1</label>
+                        <select id="id_bicicleta" name="id_bicicleta" class="form-control select2"></select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Seleccione Bicicleta #2</label>
+                        <select id="id_bicicleta2" name="id_bicicleta2" class="form-control select2" ></select>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <br>                 
+                        <button id="generarGrafico" class="btn btn-primary btn-block" onclick="compareteBicicle()"><i class="far fa-chart-bar"></i> Generar Gráfico</button>
+                        <button id="borrarGrafico" class="btn btn-danger btn-block" onclick="destroy()"><i class="fa fa-bell"></i> Borrar Grafico</button>   
+                      </div>              
+                    </div>
+                  </div>  
+                  <div class="chart">
+                    <br>
+                    <canvas id="myChart3" style="min-height: 350px; height: 350px; max-height: 250px; max-width: 100%;"></canvas>
+                  </div>       
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </section>
+
+
           <section class="col-lg-6 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card card-danger">
               <div class="card-header">          
-                <h3 class="card-title"><i class="far fa-chart-bar"></i> Reservas Totales por Bicicletas en el Mes</h3> 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+                <h3 class="card-title"><i class="far fa-chart-bar"></i> Reservas Totales por Marcas durante el mes</h3> 
               </div>
               <div class="card-body">
-                <canvas id="myChart2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <canvas id="myChart2" style="min-height: 250px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->         
           </section>
 
-          <section class="col-lg-6 connectedSortable">
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <select id="id_bicicleta" name="id_bicicleta" class="form-control select2" style="width: 50%;"></select>
-                  <select id="id_bicicleta2" name="id_bicicleta2" class="form-control select2" style="width: 50%;"></select>
-                  
-                </div>                       
-                <div class="chart">
-                  <canvas id="myChart3" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-          </section>
+          
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
           
