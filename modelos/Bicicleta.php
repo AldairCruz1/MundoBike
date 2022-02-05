@@ -1,5 +1,6 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
+date_default_timezone_set('America/Lima');
 require "../config/conexion.php";
 
 Class Bicicleta
@@ -13,7 +14,8 @@ Class Bicicleta
 	public function insertar($id_usuario,$modelo,$ganancia,$marca,$color,$serie,$accesorios,$ubicacion,$id_estado)
 	{
 		$creado_por = $_SESSION["id_usuario"];
-		$sql="INSERT INTO bicicleta (id_usuario,modelo,ganancia,marca,color,serie,accesorios,creado_por,imagen,id_estado) VALUES ('$id_usuario','$modelo','$ganancia','$marca','$color','$serie','$accesorios','$creado_by','$ubicacion','$id_estado')";
+		$timestamp = date_create()->format('Y-m-d H:i:s');
+		$sql="INSERT INTO bicicleta (id_usuario,modelo,ganancia,marca,color,serie,accesorios,creado_por,creado_a,imagen,id_estado) VALUES ('$id_usuario','$modelo','$ganancia','$marca','$color','$serie','$accesorios','$creado_por','$creado_a','$ubicacion','$id_estado')";
 		$rspta = ejecutarConsulta($sql);
 		return $rspta;	
 	}

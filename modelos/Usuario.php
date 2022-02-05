@@ -1,5 +1,6 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
+date_default_timezone_set('America/Lima');
 require "../config/conexion.php";
 
 Class Usuario
@@ -56,7 +57,8 @@ Class Usuario
 	public function insertar($login,$password,$nombre,$apepaterno,$apematerno,$dni,$tipo,$celular,$permisos)
 	{
 		$creado_por = $_SESSION["id_usuario"];
-		$sql="INSERT INTO usuario (login,password,nombres, apepaterno, apematerno, dni, tipo, celular, creado_por, estado) VALUES ('$dni','$password','$nombre','$apepaterno','$apematerno','$dni','$tipo','$celular','$creado_por','1')";
+		$timestamp = date_create()->format('Y-m-d H:i:s');
+		$sql="INSERT INTO usuario (login,password,nombres, apepaterno, apematerno, dni, tipo, celular, creado_por, creado_a, estado) VALUES ('$dni','$password','$nombre','$apepaterno','$apematerno','$dni','$tipo','$celular','$creado_por','$timestamp','1')";
 		$id_usuario = ejecutarConsulta_retornarID($sql);
 
 		if($permisos){
