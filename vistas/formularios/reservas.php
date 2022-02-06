@@ -91,11 +91,11 @@ if ($_SESSION['reservas']==1){
                 <!-- /.row -->
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-                Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information
+            <!-- <div class="card-footer">
+                Visit <a href="#">Select2 documentation</a> for more examples and information
                 about
                 the plugin.
-            </div>
+            </div> -->
           </div>
         <!-- SELECT2 EXAMPLE -->
           <div id="form" class="card card-default">
@@ -260,20 +260,9 @@ if ($_SESSION['reservas']==1){
             </div>
           </div>
           <!-- /.card-body -->
-          <div class="card-footer">
-            <nav aria-label="Contacts Page Navigation">
-              <ul class="pagination justify-content-center m-0">
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-              </ul>
-            </nav>
-          </div>
+          <!-- <div class="card-footer">
+            
+          </div> -->
           <!-- /.card-footer -->
         </div>
       </div>

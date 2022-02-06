@@ -142,6 +142,9 @@ $(function () {
     //console.log(data);
 
     /*tabla=*/$('#registros').DataTable({
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+      },
       "destroy": true,  
       "paging": true,
       "lengthChange": false,

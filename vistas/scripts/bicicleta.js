@@ -235,6 +235,9 @@ $("#btn-cancelar").click(function () {
 function listar(){
 
   $('#registros').DataTable({
+    "language": {
+      "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+    },
     "paging": true,
     "lengthChange": false,
     "searching": true,

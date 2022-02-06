@@ -70,7 +70,7 @@ session_start();
           <a href="#" class="nav-link"><??></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a id="newUsers" href="#" class="nav-link">Contact</a>
+          <a style="display:none;" id="newUsers" href="#" class="nav-link"></a>
         </li>
       </ul>
 
@@ -99,6 +99,7 @@ session_start();
         </li>-->
         <?php if($_SESSION["tipo"] == "administrador"){?>
         <!-- Messages Dropdown Menu -->
+        <?php if(FALSE){?>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-comments"></i>
@@ -156,6 +157,7 @@ session_start();
             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
           </div>
         </li>
+        <?php }?>
         <!-- Notifications Dropdown Menu -->
         <li id="notificationes" class="nav-item dropdown">
           
@@ -269,12 +271,12 @@ session_start();
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <?php if($_SESSION['tipo'] == "administrador" || $_SESSION['tipo'] == "asistente"){?>
+            <?php if($_SESSION['tipo'] == "administrador"){?>
             <li class="nav-item">
-              <a href="principal.php" class="nav-link">
+              <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                    Principal 
+                    Dashboard 
                 </p>
               </a>
             </li>
