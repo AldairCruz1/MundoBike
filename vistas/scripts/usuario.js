@@ -215,7 +215,6 @@ function limpiar(){
   $("#validacion").html("");
   $("#id_usuario").val("");
   $("#tipo").val(null).trigger("change");
-  $("#tipo").val(null).trigger("change");
   $("#validacion").removeAttr("style");
   $("#validacion").html("");
 }

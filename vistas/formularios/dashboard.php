@@ -76,7 +76,7 @@ if ($_SESSION['dashboard']==1)
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-teal">
               <div class="inner">
                 <h3 id="totalu">
                 </h3>
@@ -168,7 +168,7 @@ if ($_SESSION['dashboard']==1)
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Seleccione Bicicleta #2</label>
-                        <select id="id_bicicleta2" name="id_bicicleta2" class="form-control select2" ></select>
+                        <select id="id_bicicleta2" name="id_bicicleta2" class="form-control select2"></select>
                       </div>
                     </div>
                     <div class="col-sm-4">

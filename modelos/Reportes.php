@@ -57,7 +57,7 @@ Class Reportes
     
     public function compareteBicicle1($id_bicicleta,$id_bicicleta2)
     {
-        $sql="Call compare_bikes1('$id_bicicleta','$id_bicicleta2')";
+        $sql="Call compare_bikes('$id_bicicleta','$id_bicicleta2')";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }
