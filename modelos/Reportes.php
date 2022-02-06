@@ -29,14 +29,14 @@ Class Reportes
         (SELECT COUNT(*) FROM usuario) as 'allUsers',
         (SELECT COUNT(*) FROM bicicleta) as 'allBikes',
         (SELECT COUNT(*) FROM reserva r WHERE DATE(r.hora_inicio) = DATE(NOW())) as 'allReservations',
-        (SELECT ifNULL(SUM(MONTO),0) FROM reserva r WHERE DATE(r.hora_inicio) = DATE(NOW()) AND r.id_estado in (2,4)) as 'totalReservations'";
+        (SELECT CONCAT('S/ ',ifNULL(SUM(MONTO),0)) FROM reserva r WHERE DATE(r.hora_inicio) = DATE(NOW()) AND r.id_estado in (2,4)) as 'totalReservations'";
 		$rspta = ejecutarConsultaSimpleFila($sql);
         return $rspta;
 	}
 
     public function ventasMeses()
     {
-        $sql="SELECT date_format(hora_inicio,'%Y %M') AS fecha, sum(monto) as total from reserva GROUP by month(hora_inicio) ORDER by fecha DESC LIMIT 0,12";
+        $sql="SELECT date_format(hora_inicio,'%Y %M') AS fecha, sum(monto) as total from reserva GROUP by month(hora_inicio) ORDER by hora_inicio ASC LIMIT 0,12";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }
@@ -57,7 +57,7 @@ Class Reportes
     
     public function compareteBicicle1($id_bicicleta,$id_bicicleta2)
     {
-        $sql="Call compare_bikes('$id_bicicleta','$id_bicicleta2')";
+        $sql="Call compare_bikes1('$id_bicicleta','$id_bicicleta2')";
         $rspta = ejecutarConsulta($sql);
         return $rspta;
     }

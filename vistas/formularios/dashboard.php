@@ -151,7 +151,7 @@ if ($_SESSION['dashboard']==1)
           </section> -->
 
           <section class="col-lg-6 connectedSortable">
-          <div class="card card-warning">
+          <div class="card card-secondary">
               <div class="card-header">
                 <h3 class="card-title"><i class="far fa-chart-bar"></i> Montos generado por Bicicletas por Meses</h3>
               </div>
