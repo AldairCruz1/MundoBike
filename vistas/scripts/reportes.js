@@ -116,15 +116,6 @@ $(function () {
   $("#fecha_inicio").change(listar);
   $("#fecha_fin").change(listar);
 
-  /*$("#id_bicicleta").change(function () {
-    //alert("Cambio");
-    var id_bicicleta = $("#id_bicicleta").val();
-    var id_bicicleta2 = $("#id_bicicleta2").val();
-    compareteBicicle(name1=id_bicicleta);
-    compareteBicicle(name2=id_bicicleta2);
-    
-
-  });*/
 
   function limpiar() {
     $("#id_bicicleta").val(null).trigger("change")
@@ -315,6 +306,16 @@ $(function () {
       });
     } 
     else{
+
+      $('#generarGrafico').click(function(){
+        $('#generarGrafico').hide();
+        $('#borrarGrafico').show();
+      });
+      $('#borrarGrafico').click(function(){
+        $('#borrarGrafico').hide();
+        $('#generarGrafico').show();
+      });
+          
       var name_bicicleta2 = $("#select2-id_bicicleta2-container").html();
       var name_bicicleta = $("#select2-id_bicicleta-container").html();
 
@@ -356,65 +357,6 @@ $(function () {
         console.log(fecha);
         console.log(fecha2);
         console.log(monto, monto2);
-
-
-        // //setup block
-        // var barChartData = {
-        //   labels  : fecha,
-        //   datasets: [
-        //   {
-        //     label               : "BK"+name2,
-        //     backgroundColor     : 'rgba(60,141,188,0.9)',
-        //     borderColor         : 'rgba(60,141,188,0.8)',
-        //     pointRadius          : false,
-        //     pointColor          : '#3b8bba',
-        //     pointStrokeColor    : 'rgba(60,141,188,1)',
-        //     pointHighlightFill  : '#fff',
-        //     pointHighlightStroke: 'rgba(60,141,188,1)',
-        //     data                : monto2
-        //   },
-        //   {
-        //     label               : "BK"+name1,
-        //     backgroundColor     : 'rgba(210, 214, 222, 1)',
-        //     borderColor         : 'rgba(210, 214, 222, 1)',
-        //     pointRadius         : false,
-        //     pointColor          : 'rgba(210, 214, 222, 1)',
-        //     pointStrokeColor    : '#c1c7d1',
-        //     pointHighlightFill  : '#fff',
-        //     pointHighlightStroke: 'rgba(220,220,220,1)',
-        //     data                : monto
-        //   },   
-        // ]
-        // }
-        // var temp0 = barChartData.datasets[0]
-        // var temp1 = barChartData.datasets[1]
-        // barChartData.datasets[0] = temp1
-        // barChartData.datasets[1] = temp0
-
-
-        // //config block 
-
-        // var barChartOptions = {
-        //   responsive              : true,
-        //   maintainAspectRatio     : false,
-        //   datasetFill             : false
-        // }
-
-        // const config ={
-        //   type: 'bar',
-        //   data: barChartData,
-        //   options: barChartOptions
-        // }
-        // //init block (render)
-
-        // const myChart= new Chart(
-        //   document.getElementById('myChart3'),
-        //   config
-        // );
-
-
-
-
 
         //- BAR CHART -
         //-------------
@@ -465,7 +407,6 @@ $(function () {
           options: barChartOptions
         })
 
-        //barChart.destroy();
 
       })
     }
@@ -476,14 +417,7 @@ $(function () {
     barChart.destroy();
   }
 
-  $('#generarGrafico').click(function(){
-    $('#generarGrafico').hide();
-    $('#borrarGrafico').show();
-  });
-  $('#borrarGrafico').click(function(){
-    $('#borrarGrafico').hide();
-    $('#generarGrafico').show();
-  });
+  
 
   
 
