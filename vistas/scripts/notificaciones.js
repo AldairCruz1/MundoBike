@@ -3,7 +3,7 @@ function init(){
 }
 
 $('#newUsers').timer({
-    duration: '10s',
+    duration: '5s',
     callback: function () {
         console.log("hola"); //you could have a ajax call here instead
         notifications();

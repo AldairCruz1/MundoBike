@@ -274,6 +274,7 @@ switch ($_GET["op"]){
 					$lista_permisos[$permiso->categoria]["detalle"][$permiso->permiso]["nombre"] = $permiso->permiso;
 					$lista_permisos[$permiso->categoria]["detalle"][$permiso->permiso]["url"] = $permiso->url;
 					$lista_permisos[$permiso->categoria]["detalle"][$permiso->permiso]["icono"] = $permiso->iconop;
+					$lista_permisos[$permiso->categoria]["detalle"][$permiso->permiso]["descripcion"] = $permiso->descripcion;
 					$_SESSION[$permiso->permiso]=1;
 			}
 

@@ -309,7 +309,7 @@ session_start();
                   <li class="nav-item">
                     <a href="<?=$permiso["url"]?>" class="nav-link">
                       <i class="<?=$permiso["icono"]?>"></i>
-                      <p><?=$permiso["nombre"]?></p>
+                      <p><?=$permiso["descripcion"]?></p>
                     </a>
                   </li>
                 </ul>

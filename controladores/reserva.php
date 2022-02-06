@@ -100,8 +100,21 @@ switch ($_GET["op"]){
 				break;
 			}
 
+			if($reg->id_reserva < 10){
+			$numero_reserva = '000'.$reg->id_reserva;
+			}
+			else if ($reg->id_reserva < 100) {
+			$numero_reserva = '00'.$reg->id_reserva;
+			}
+			else if ($reg->id_reserva < 1000) {
+			$numero_reserva = '0'.$reg->id_reserva;
+			}
+			else{
+			$numero_reserva = $reg->id_reserva;
+			}
+
  			$data[]=array(
-				"0"=>$reg->id_reserva,
+				"0"=>"N° $numero_reserva",
  				"1"=>'<div class="btn-group"> <button class="btn btn-xs btn-warning" onclick="mostrar('. $reg->id_reserva .')"><i class="fa fa-edit"></i></div>',
  				"2"=>"$reg->nombres $reg->apepaterno",
  				"3"=>date_format(date_create($reg->fecha), 'd/m/Y'),
@@ -215,10 +228,20 @@ switch ($_GET["op"]){
 
         while ($reg = $rspta->fetch_object())
             {
+				if($reg->id_bicicleta < 10){
+				$numero_bicicleta = '00'.$reg->id_bicicleta;
+				}
+				else if ($reg->id_bicicleta < 100) {
+				$numero_bicicleta = '0'.$reg->id_bicicleta;
+				}
+				else{
+				$numero_bicicleta = $reg->id_bicicleta;
+				}
+				
                 $html .= '<div id="'.$reg->id_bicicleta.'-contend" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
               				<div class="card bg-light d-flex flex-fill">
-                				<div class="card-header text-muted border-bottom-0">
-                  					'.$reg->id_bicicleta.'
+                				<div class="card-header text-muted border-bottom-0">BK
+                  					'.$numero_bicicleta.'
                 				</div>
                 				<div class="card-body pt-0">
                   					<div class="row">
@@ -318,6 +341,16 @@ switch ($_GET["op"]){
 
         while ($reg = $rspta->fetch_object()){
 
+			if($reg->id_bicicleta < 10){
+			$numero_bicicleta = 'BK00'.$reg->id_bicicleta;
+			}
+			else if ($reg->id_bicicleta < 100) {
+			$numero_bicicleta = '0'.$reg->id_bicicleta;
+			}
+			else{
+			$numero_bicicleta = $reg->id_bicicleta;
+			}
+
 			if( in_array($reg->id_estado, ["3","4","5"])){
 
 				$sw = in_array($reg->id_bicicleta, $valores)?'<button id="delete'.$reg->id_bicicleta.'" type="button" class="btn btn-sm bg-danger" onclick="quitar('.$reg->id_bicicleta.')">
@@ -328,8 +361,8 @@ switch ($_GET["op"]){
 
                 $html .= '<div id="'.$reg->id_bicicleta.'-contend" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
               				<div class="card bg-light d-flex flex-fill">
-                				<div class="card-header text-muted border-bottom-0">
-                  					'.$reg->id_bicicleta.'
+                				<div class="card-header text-muted border-bottom-0">BK
+                  					'.$numero_bicicleta.'
                 				</div>
                 				<div class="card-body pt-0">
                   					<div class="row">
@@ -372,6 +405,15 @@ switch ($_GET["op"]){
 		}
 
         while ($reg = $rspta->fetch_object()){
+			if($reg->id_bicicleta < 10){
+			$numero_bicicleta = '00'.$reg->id_bicicleta;
+			}
+			else if ($reg->id_bicicleta < 100) {
+			$numero_bicicleta = '0'.$reg->id_bicicleta;
+			}
+			else{
+			$numero_bicicleta = $reg->id_bicicleta;
+			}
 
 			if( in_array($reg->id_estado, ["3","4","5"])){
 
@@ -383,8 +425,7 @@ switch ($_GET["op"]){
 
                 $data = '<div id="'.$reg->id_bicicleta.'-contend" class="bpf col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
               				<div class="card bg-light d-flex flex-fill">
-                				<div class="card-header text-muted border-bottom-0">
-                  					'.$reg->id_bicicleta.'
+                				<div class="card-header text-muted border-bottom-0">BK'.$numero_bicicleta.'
                 				</div>
                 				<div class="card-body pt-0">
                   					<div class="row">

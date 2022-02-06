@@ -134,8 +134,18 @@ switch ($_GET["op"]){
 				break;
 			}
 
+			if($reg->id_bicicleta < 10){
+			$numero_bicicleta = '00'.$reg->id_bicicleta;
+			}
+			else if ($reg->id_bicicleta < 100) {
+			$numero_bicicleta = '0'.$reg->id_bicicleta;
+			}
+			else{
+			$numero_bicicleta = $reg->id_bicicleta;
+			}
+
  			$data[]=array(
-				"0"=>$reg->id_bicicleta,
+				"0"=>"BK$numero_bicicleta",
  				"1"=>'<div class="btn-group"> <button class="btn btn-xs btn-warning" onclick="mostrar('. $reg->id_bicicleta .')"><i class="fa fa-edit"></i>  <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal-default" onclick="imagen(\''. $reg->imagen .'\')"><i class="fa fa-bicycle"></i></button> </div>',
  				"2"=>"$reg->nombres $reg->apepaterno",
  				"3"=>$reg->marca,
